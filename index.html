@@ -25,7 +25,7 @@
                     for (let i = 0; i < names.length; i++) {
                         const link = document.createElement("a")
                         link.classList.add("box-link")
-                        link.innerText = names[i]
+                        link.innerText = decodeURI(names[i])
                         link.href = sites[i]
                         root.appendChild(link)
                     }
