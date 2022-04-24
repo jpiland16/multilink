@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="index.css"/>
+        <title>MultiLink</title>
+        <script>
+
+            function onload() {
+
+                const root = document.getElementById("root")
+
+                function tryLoad() {
+                    const sitesList = location.search.substring(1)
+                    const names = []
+                    const sites = []
+
+                    sitesList.split(",").map((value, index) => {
+                        index % 2 == 0 && names.push(value)
+                        index % 2 == 1 && sites.push(value)
+                    })
+
+                    if (names.length != sites.length) {
+                        return false
+                    }
+
+                    for (let i = 0; i < names.length; i++) {
+                        const link = document.createElement("a")
+                        link.classList.add("box-link")
+                        link.innerText = names[i]
+                        link.href = sites[i]
+                        root.appendChild(link)
+                    }
+
+                    return true
+                }
+
+                if (!tryLoad()) root.innerText = "Error in parsing input"
+
+            }
+
+        </script>
+    </head>
+
+    <body onload="onload()">
+        <div id="root">
+        </div>
+    </body>
+
+</html>
